@@ -6,8 +6,19 @@ const app = express();
 const http = require('http').createServer(app);
 const port = 3001;
 const orderService = require('./services/order.service');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const conf = require('./config/conf');
+
 
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({
+    secret: conf.secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}))
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -23,9 +34,12 @@ if (process.env.NODE_ENV === 'production') {
 
 
 const restaurantsRoutes = require('./api/restaurant/restaurant.routes');
-
+const authRoutes = require('./api/auth/auth.routes');
+const userRoutes = require('./api/user/user.routes');
 
 app.use('/api/restaurants', restaurantsRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 
 
 
