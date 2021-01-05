@@ -1,6 +1,8 @@
 const userService = require('./user.service')
 
 
+
+
 async function getUser(req, res) {
     const user = await userService.getById(req.params.id)
     res.send(user)
@@ -18,6 +20,7 @@ async function deleteUser(req, res) {
 
 async function updateUser(req, res) {
     const user = req.body;
+    console.log(user);
     await userService.update(user)
     res.send(user)
 }

@@ -7,7 +7,7 @@ module.exports = {
     getByEmail,
     remove,
     update,
-    add
+    add,
 }
 
 async function query(filterBy = {}) {
@@ -60,13 +60,27 @@ async function update(user) {
     user._id = ObjectId(user._id);
 
     try {
-        await collection.replaceOne({ _id: user._id }, { $set: user })
+        await collection.updateOne({ _id: user._id }, { $set: user })
         return user
     } catch (err) {
         console.log(`ERROR: cannot update user ${user._id}`)
         throw err;
     }
 }
+
+
+// async function updateOrders(user) {
+//     const collection = await dbService.getCollection('user');
+//     user._id = ObjectId(user._id);
+//     try {
+//         await collection.updateOne({ _id: user._id }, { $set: orders });
+//         return user;
+//     }
+//     catch (err) {
+//         console.log('could not update users orders');
+//         throw err;
+//     }
+// }
 
 async function add(user) {
     const collection = await dbService.getCollection('user')
