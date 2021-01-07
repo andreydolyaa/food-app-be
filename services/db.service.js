@@ -1,7 +1,7 @@
 
 
 const MongoClient = require('mongodb').MongoClient;
-const dbUrl = 'mongodb://localhost:27017';
+const conf = require('../config/conf');
 
 module.exports = {
     getCollection
@@ -21,7 +21,7 @@ async function getCollection(collectionName){
 async function connect(){
     if(dbConn) return dbConn;
     try{
-        const client = await MongoClient.connect(dbUrl,{useNewUrlParser:true});
+        const client = await MongoClient.connect(conf.dbURL,{useNewUrlParser:true});
         const db = client.db(dbName);
         dbConn = db;
         return db;

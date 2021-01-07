@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const http = require('http').createServer(app);
-const port = 3001;
+
 const orderService = require('./services/order.service');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -49,6 +49,10 @@ app.post('/submitOrder', (req, res) => {
 })
 
 
+app.get('/**', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+})
+const port = process.env.PORT || 3001;
 http.listen(port, () => {
     console.log('Server started on port *', port);
 })
