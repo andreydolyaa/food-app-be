@@ -15,7 +15,8 @@ async function login(email, password) {
     if (!user) return Promise.reject('Invaild Email or Password');
     // console.log('USER,',user);
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return Promise.reject('Invaild Email or Password');
+    console.log('user servoce login backend ',match);
+    if (!match) return console.log('Invaild Email or Password');
     delete user.password;
     return user;
 }
