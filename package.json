@@ -4,8 +4,9 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js"
+        "start": "nodemon server.js",
+    "server:dev": "set NODE_ENV=development & nodemon app.js",
+    "server:prod": "node app.js"
     },
     "author": "",
     "license": "ISC",
