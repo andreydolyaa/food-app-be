@@ -22,7 +22,7 @@ app.use(session({
 
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.resolve(__dirname, 'build')));
+    app.use(express.static(path.resolve(__dirname, 'public')));
 } else {
     const corsOptions = {
         origin: ['http://127.0.0.1:8080', 'http://localhost:8080', 'http://127.0.0.1:3000', 'http://localhost:3000', 'http://localhost:8081', 'http://127.0.0.1:3001', 'http://localhost:3001'],
@@ -49,8 +49,8 @@ app.post('/submitOrder', (req, res) => {
 })
 
 
-app.get('/**', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 })
 const port = process.env.PORT || 3001;
 http.listen(port, () => {
