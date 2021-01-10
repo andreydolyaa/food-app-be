@@ -26,10 +26,9 @@ async function login(req, res) {
 
 async function signup(req, res) {
     try {
-        const { fullName, email, password, orders } = req.body;
-        const account = await authService.signup(fullName, email, password, orders);
+        const { fullName, email, password, orders ,isOwner} = req.body;
+        const account = await authService.signup(fullName, email, password, orders,isOwner);
         const user = await authService.login(email, password);
-        console.log('ACC,US ,',user);
         req.session.user = user;
         res.json(user);
     }

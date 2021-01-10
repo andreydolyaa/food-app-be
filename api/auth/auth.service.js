@@ -15,7 +15,7 @@ async function login(email, password) {
     if (!user) return Promise.reject('Invaild Email or Password');
     // console.log('USER,',user);
     const match = await bcrypt.compare(password, user.password);
-    console.log('user servoce login backend ',match);
+    console.log('user servoce login backend ', match);
     if (!match) return console.log('Invaild Email or Password');
     delete user.password;
     return user;
@@ -23,8 +23,8 @@ async function login(email, password) {
 
 
 
-async function signup(username, email, password, orders) {
+async function signup(username, email, password, orders, isOwner) {
     if (!email || !password || !username) return Promise.reject('Email & Password Required!');
     const hash = await bcrypt.hash(password, 10);
-    return userService.add({ email, password: hash, username, orders });
+    return userService.add({ email, password: hash, username, orders, isOwner });
 }
