@@ -15,7 +15,7 @@ GET, POST, PUT, DELETE Methods.
 /api/auth/signup
 /submitOrder
 ```
-user registration with ```encrypted``` passwords supported.
+user registration with ```encrypted``` passwords supported.  
 After a purchase is made ```/submitOrder``` handels the order recieved (_right now the data stored in the backend and used for Email sending only_).  
 All the data stored in ```MongoDB Atlas```.  
 Robo-3T used for local database management.
