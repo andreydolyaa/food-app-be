@@ -24,6 +24,7 @@ async function getRestaurant(req, res) {
 
 
 async function addRestaurant(req, res) {
+    console.log(req.body, 'NEW RESTAURANT ADDED');
     const restaurant = await restaurantService.add(req.body);
     res.json(restaurant);
 }
